@@ -1,6 +1,7 @@
 1.	 Section: Database Overview
 
 CREATE SCHEMA colonial_journey_management_system_db;
+
 USE colonial_journey_management_system_db;
 
 2.	 Section: Data Definition Language (DDL) 
@@ -8,22 +9,26 @@ USE colonial_journey_management_system_db;
 CREATE TABLE planets(
 id INT(11) PRIMARY KEY,
 `name` VARCHAR(30)NOT NULL);
+
 CREATE TABLE spaceports(
 id INT(11) PRIMARY KEY,
 `name` VARCHAR(50)NOT NULL,
 planet_id INT(11),
 CONSTRAINT fk_planet_id FOREIGN KEY (planet_id) REFERENCES planets (id));
+
 CREATE TABLE spaceships(
 id INT(11) PRIMARY KEY,
 `name` VARCHAR(50) NOT NULL,
 `manufacturer` VARCHAR(30)NOT NULL,
 light_speed_rate INT(11) DEFAULT 0);
+
 CREATE TABLE colonists(
 id INT(11) PRIMARY KEY,
 first_name VARCHAR(20) NOT NULL,
 last_name VARCHAR(20) NOT NULL,
 ucn CHAR(10) NOT NULL UNIQUE,
 birth_date DATE NOT NULL);
+
 CREATE TABLE journeys(
 id INT(11) PRIMARY KEY,
 journey_start DATETIME NOT NULL,
@@ -33,6 +38,7 @@ destination_spaceport_id INT(11),
 spaceship_id INT(11),
 CONSTRAINT fk_spaceport_id FOREIGN KEY (destination_spaceport_id) REFERENCES spaceports (id),
 CONSTRAINT fk_spaceship_id FOREIGN KEY (spaceship_id) REFERENCES spaceships (id));
+
 CREATE TABLE travel_cards(
 id INT(11) PRIMARY KEY,
 card_number CHAR(10) NOT NULL UNIQUE,
