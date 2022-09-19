@@ -1,0 +1,22 @@
+1.	 Section: Database Overview
+2.	 Section: Data Definition Language (DDL) 
+3.	 Section: Data Manipulation Language (DML)
+3.1  Data insertion
+3.2  Data update
+3.3  Data deletion
+4.	 Section: Querying 
+4.1  Extract all travel cards
+4.2  Extract all colonists
+4.3	 Extract all military journeys
+4.4  Extract all pilots
+4.5	 Count all colonists that are on technical journey
+4.6  Extract the fastest spaceship
+4.7  Extract spaceships with pilots younger than 30 years
+4.8  Extract all educational mission planets and spaceports
+4.9  Extract all planets and their journey count
+4.10 Extract the shortest journey
+4.11 Extract the less popular job
+5.	 Section: Programmability
+5.1  Get colonists count
+5.2  Modify spaceship
+
