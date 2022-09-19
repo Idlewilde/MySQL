@@ -50,8 +50,40 @@ CONSTRAINT fk_colonist_id FOREIGN KEY (colonist_id) REFERENCES colonists (id));
 
 3.	 Section: Data Manipulation Language (DML)
 3.1  Data insertion
+
+INSERT INTO travel_cards (card_number, job_during_journey, colonist_id, journey_id)
+SELECT IF(birth_date >= '1980-01-01', concat(year(birth_date), day(birth_date), left(ucn, 4)),
+CONCAT(year(birth_date), month(birth_date), right(ucn, 4))) AS card_number,
+CASE
+WHEN id % 2 = 0 THEN 'Pilot'
+WHEN id % 3 = 0 THEN 'Cook'
+ELSE 'Engineer'
+END
+AS job_during_journey,
+id,
+LEFT(ucn,1) AS journey_id
+FROM colonists
+WHERE id BETWEEN 96 AND 100;
+
 3.2  Data update
+
+UPDATE journeys
+SET purpose =
+CASE
+WHEN id % 2 = 0 THEN 'Medical'
+WHEN id % 3 = 0 THEN 'Technical'
+WHEN id % 5 = 0 THEN 'Educational'
+WHEN id % 7 = 0 THEN 'Military'
+END
+WHERE id % 2 = 0 OR id % 3 = 0 OR id % 5 = 0 OR id % 7 = 0;
+
 3.3  Data deletion
+
+DELETE c
+FROM colonists AS c
+LEFT JOIN travel_cards AS t on c.id=t.colonist_id
+WHERE t.colonist_id IS NULL;
+
 4.	 Section: Querying 
 4.1  Extract all travel cards
 4.2  Extract all colonists
