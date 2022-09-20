@@ -158,6 +158,12 @@ ORDER BY j.journey_end-j.journey_start
 LIMIT 1;
 
 4.11 Extract the less popular job
+
+SELECT tc.job_during_journey from travel_cards AS tc
+JOIN journeys AS j ON j.id=tc.journey_id
+ORDER BY j.journey_end-j.journey_start DESC
+LIMIT 1;
+
 5.	 Section: Programmability
 5.1  Get colonists count
 5.2  Modify spaceship
