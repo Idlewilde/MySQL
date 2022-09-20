@@ -142,6 +142,13 @@ WHERE j.purpose = 'Educational'
 ORDER BY sp.`name` DESC;
 
 4.9  Extract all planets and their journey count
+
+SELECT j.id, p.`name`, sp.`name`, j.purpose from journeys AS j
+JOIN spaceports AS sp ON sp.id=j.destination_spaceport_id
+JOIN planets AS p ON sp.planet_id=p.id
+ORDER BY j.journey_end-j.journey_start
+LIMIT 1;
+
 4.10 Extract the shortest journey
 4.11 Extract the less popular job
 5.	 Section: Programmability
