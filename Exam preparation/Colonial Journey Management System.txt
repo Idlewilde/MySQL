@@ -117,10 +117,30 @@ WHERE j.purpose = 'Technical';
 
 4.6  Extract the fastest spaceship
 
-
+SELECT ss.`name`, sp.`name` FROM spaceships AS ss
+JOIN journeys AS j on j.spaceship_id=ss.id
+JOIN spaceports AS sp on j.destination_spaceport_id=sp.id
+ORDER BY light_speed_rate DESC
+LIMIT 1;
 
 4.7  Extract spaceships with pilots younger than 30 years
+
+SELECT ss.`name`, ss.manufacturer FROM spaceships AS ss
+JOIN journeys AS j ON j.spaceship_id = ss.id
+JOIN travel_cards AS tc ON j.id = tc.journey_id
+JOIN colonists as c ON tc.colonist_id = c.id
+WHERE tc.job_during_journey = 'Pilot' AND 2019 - year(c.birth_date) < 30
+GROUP by ss.id
+ORDER BY ss.name;
+
 4.8  Extract all educational mission planets and spaceports
+
+SELECT p.`name`, sp.`name` FROM planets as p
+JOIN spaceports AS sp ON p.id = sp.planet_id
+JOIN journeys AS j ON sp.id = j.destination_spaceport_id
+WHERE j.purpose = 'Educational'
+ORDER BY sp.`name` DESC;
+
 4.9  Extract all planets and their journey count
 4.10 Extract the shortest journey
 4.11 Extract the less popular job
