@@ -143,13 +143,20 @@ ORDER BY sp.`name` DESC;
 
 4.9  Extract all planets and their journey count
 
+SELECT p.`name`, COUNT(j.id) AS count FROM planets as p
+JOIN spaceports AS sp ON p.id = sp.planet_id
+JOIN journeys AS j ON j.destination_spaceport_id = sp.id
+GROUP BY p.id
+ORDER BY count DESC, p.`name` ASC;
+
+4.10 Extract the shortest journey
+
 SELECT j.id, p.`name`, sp.`name`, j.purpose from journeys AS j
 JOIN spaceports AS sp ON sp.id=j.destination_spaceport_id
 JOIN planets AS p ON sp.planet_id=p.id
 ORDER BY j.journey_end-j.journey_start
 LIMIT 1;
 
-4.10 Extract the shortest journey
 4.11 Extract the less popular job
 5.	 Section: Programmability
 5.1  Get colonists count
