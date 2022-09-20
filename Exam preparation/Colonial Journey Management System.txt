@@ -86,7 +86,15 @@ WHERE t.colonist_id IS NULL;
 
 4.	 Section: Querying 
 4.1  Extract all travel cards
+
+SELECT card_number, job_during_journey from travel_cards
+ORDER BY card_number;
+
 4.2  Extract all colonists
+
+SELECT id, concat_ws(' ', first_name, last_name), ucn FROM colonists
+ORDER BY first_name,last_name,id;
+
 4.3	 Extract all military journeys
 4.4  Extract all pilots
 4.5	 Count all colonists that are on technical journey
