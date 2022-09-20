@@ -96,9 +96,29 @@ SELECT id, concat_ws(' ', first_name, last_name), ucn FROM colonists
 ORDER BY first_name,last_name,id;
 
 4.3	 Extract all military journeys
+
+SELECT id, journey_start, journey_end FROM journeys
+WHERE purpose = 'Military'
+ORDER BY journey_start;
+
 4.4  Extract all pilots
+
+SELECT c.id, concat_ws(' ', c.first_name, c.last_name) FROM colonists as c
+JOIN travel_cards AS t ON c.id=t.colonist_id
+WHERE t.job_during_journey = 'Pilot'
+ORDER BY c.id;
+
 4.5	 Count all colonists that are on technical journey
+
+SELECT count(c.id) FROM colonists as c
+JOIN travel_cards AS t ON c.id=t.colonist_id
+JOIN journeys AS j on t.journey_id=j.id
+WHERE j.purpose = 'Technical';
+
 4.6  Extract the fastest spaceship
+
+
+
 4.7  Extract spaceships with pilots younger than 30 years
 4.8  Extract all educational mission planets and spaceports
 4.9  Extract all planets and their journey count
