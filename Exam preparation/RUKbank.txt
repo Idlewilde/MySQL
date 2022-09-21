@@ -1,6 +1,47 @@
 0.	Section 0: Database Overview
 
+CREATE SCHEMA ruk_database;
+USE ruk_database;
+
 1.	Section 1: Data Definition Language (DDL)
+
+CREATE TABLE branches(
+id INT(11) PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(30)NOT NULL UNIQUE);
+
+CREATE TABLE employees(
+id INT(11) PRIMARY KEY AUTO_INCREMENT,
+`first_name` VARCHAR(20)NOT NULL,
+`last_name` VARCHAR(20)NOT NULL,
+`salary` DECIMAL(10,2) NOT NULL,
+`started_on` DATE NOT NULL,
+`branch_id` INT(11) NOT NULL,
+CONSTRAINT fk_branch_id FOREIGN KEY (branch_id) REFERENCES branches (id));
+
+CREATE TABLE clients(
+id INT(11) PRIMARY KEY AUTO_INCREMENT,
+`full_name` VARCHAR(50) NOT NULL,
+`age` INT(11) NOT NULL);
+
+CREATE TABLE employees_clients(
+`employee_id` INT(11),
+`client_id` INT(11),
+CONSTRAINT fk_employee_id FOREIGN KEY (employee_id) REFERENCES employees (id),
+CONSTRAINT fk_client_id FOREIGN KEY (client_id) REFERENCES clients (id));
+
+CREATE TABLE bank_accounts(
+id INT(11) PRIMARY KEY AUTO_INCREMENT,
+`account_number` VARCHAR(10) NOT NULL,
+`balance` DECIMAL(10,2) NOT NULL,
+`client_id` INT(11) NOT NULL UNIQUE,
+CONSTRAINT fk_client1_id FOREIGN KEY (client_id) REFERENCES clients (id));
+
+CREATE TABLE cards(
+id INT(11) PRIMARY KEY AUTO_INCREMENT,
+`card_number` VARCHAR(19) NOT NULL,
+`card_status` VARCHAR(7) NOT NULL,
+`bank_account_id` INT(11) NOT NULL,
+CONSTRAINT fk_BA_id FOREIGN KEY (bank_account_id) REFERENCES bank_accounts (id));
 
 2.	Section 2: Data Manipulation Language (DML)
 2.1.	Insert
