@@ -101,6 +101,15 @@ LIMIT 5;
 
 3.5.	Branch cards
 
+SELECT b.`name`, COUNT(c.id) AS count_of_cards FROM branches AS b
+LEFT JOIN employees AS em ON em.branch_id = b.id
+LEFT JOIN employees_clients AS ec ON ec.employee_id=em.id
+LEFT JOIN clients AS cl ON ec.client_id=cl.id
+LEFT JOIN bank_accounts AS ba ON cl.id = ba.client_id
+LEFT JOIN cards AS c ON c.bank_account_id = ba.id
+GROUP BY b.`name`
+ORDER BY count_of_cards DESC, b.`name`;
+
 4.	Section 4: Programmability
 4.1.	Extract client cards count
 4.2.	Extract Client Info
