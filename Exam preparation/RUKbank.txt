@@ -53,6 +53,16 @@ FROM clients
 WHERE id BETWEEN 191 AND 200;
 
 2.2.	Update
+
+UPDATE employees_clients 
+SET employee_id =
+(SELECT * FROM(SELECT cc.employee_id
+          FROM employees_clients AS cc
+		  GROUP BY cc.employee_id
+          ORDER BY COUNT(client_id) , cc.employee_id
+          LIMIT 1)as s)
+WHERE employee_id=client_id;
+
 2.3.	Delete
 
 3.	Section 3: Querying
