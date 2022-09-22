@@ -74,7 +74,16 @@ FROM players as p
 WHERE age>=45;
 
 2.2.	Update
+
+UPDATE coaches as c
+JOIN players_coaches as pc ON c.id=pc.coach_id
+SET c.coach_level=c.coach_level+1
+WHERE c.first_name LIKE "A%" AND pc.player_id>=1;  
+
 2.3.	Delete
+
+DELETE FROM players
+WHERE age >= 45;
 
 3.	Section 3: Querying
 3.1.	Players
