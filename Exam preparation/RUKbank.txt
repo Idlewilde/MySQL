@@ -91,6 +91,14 @@ JOIN clients AS cl ON ba.client_id = cl.id
 ORDER BY c.id DESC;  
 
 3.4.	Top 5 Employees
+
+SELECT CONCAT(e.first_name, " ", e.last_name) AS `name`, e.started_on, COUNT(ec.client_id) AS count_of_clients
+FROM employees AS e
+JOIN employees_clients AS ec ON e.id=ec.employee_id
+GROUP BY ec.employee_id
+ORDER BY count_of_clients DESC, e.id
+LIMIT 5;
+
 3.5.	Branch cards
 
 4.	Section 4: Programmability
