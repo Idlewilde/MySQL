@@ -65,6 +65,10 @@ WHERE employee_id=client_id;
 
 2.3.	Delete
 
+DELETE c FROM employees AS c 
+LEFT JOIN employees_clients AS ec ON c.id=ec.employee_id
+WHERE ec.client_id IS NULL;
+
 3.	Section 3: Querying
 3.1.	Clients
 3.2.	Newbies
