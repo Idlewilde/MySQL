@@ -44,7 +44,14 @@ id INT(11) PRIMARY KEY AUTO_INCREMENT,
 CONSTRAINT fk_BA_id FOREIGN KEY (bank_account_id) REFERENCES bank_accounts (id));
 
 2.	Section 2: Data Manipulation Language (DML)
+
 2.1.	Insert
+
+INSERT INTO cards (card_number, card_status, bank_account_id)
+SELECT REVERSE(full_name),"Active",id
+FROM clients
+WHERE id BETWEEN 191 AND 200;
+
 2.2.	Update
 2.3.	Delete
 
