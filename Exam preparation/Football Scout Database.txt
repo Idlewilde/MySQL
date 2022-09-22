@@ -67,6 +67,12 @@ CONSTRAINT fk_coach_id FOREIGN KEY (coach_id) REFERENCES coaches (id));
 
 2.	Section 2: Data Manipulation Language (DML)
 2.1.	Insert
+
+INSERT INTO coaches (first_name, last_name, salary, coach_level)
+SELECT p.first_name,p.last_name,p.salary*2, LENGTH(p.first_name)
+FROM players as p
+WHERE age>=45;
+
 2.2.	Update
 2.3.	Delete
 
