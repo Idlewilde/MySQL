@@ -118,13 +118,21 @@ CREATE FUNCTION udf_client_cards_count(`name` VARCHAR(30))
 RETURNS INT 
 DETERMINISTIC
 BEGIN
-	DECLARE cards INT;
-	SET cards := (SELECT count(ca.id) FROM clients AS c
-					JOIN bank_accounts AS ba ON ba.client_id=c.id
-                    JOIN cards AS ca ON ba.id=ca.bank_account_id
-					WHERE c.full_name = `name`);
-	RETURN cards;
+DECLARE cards INT;
+SET cards := (SELECT count(ca.id) FROM clients AS c
+JOIN bank_accounts AS ba ON ba.client_id=c.id
+JOIN cards AS ca ON ba.id=ca.bank_account_id
+WHERE c.full_name = `name`);
+RETURN cards;
 END 
 
 4.2.	Extract Client Info
+
+CREATE PROCEDURE udp_clientinfo(full_name VARCHAR(50)) 
+BEGIN
+  SELECT cl.full_name, cl.age, ba.account_number, concat("$", ba.balance) 
+  FROM clients AS cl
+  JOIN bank_accounts AS ba ON cl.id=ba.client_id
+  WHERE cl.full_name = full_name;
+END
 
