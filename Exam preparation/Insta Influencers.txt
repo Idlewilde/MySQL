@@ -60,7 +60,19 @@ WHERE u.gender='M';
 
 2.2.	Update
 
+UPDATE addresses
+SET `country` =
+CASE
+WHEN `country` LIKE 'B%' THEN 'Blocked'
+WHEN `country` LIKE 'T%' THEN 'Test'
+WHEN `country` LIKE 'P%' THEN 'In Progress'
+END
+WHERE `country` LIKE 'B%' OR `country` LIKE 'T%' OR `country` LIKE 'P%';
+
 2.3.	Delete
+
+DELETE a FROM addresses AS a 
+WHERE a.id % 3 = 0;
 
 3.	Section 3: Querying
 3.1.	Users
