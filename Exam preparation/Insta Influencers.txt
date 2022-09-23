@@ -99,7 +99,16 @@ ORDER BY u.id;
 
 3.4.	Count likes and comments
 
+SELECT ph.id, 
+(SELECT COUNT(l.id) FROM likes AS l WHERE l.photo_id=ph.id) AS likes_count,
+(SELECT COUNT(c.id) FROM comments AS c WHERE c.photo_id=ph.id) AS comments_count
+FROM photos AS ph
+GROUP BY ph.id
+ORDER BY  likes_count DESC, comments_count DESC, ph.id;
+
 3.5.	The Photo on the Tenth Day of the Month
+
+
 
 4.	Section 4: Programmability
 4.1.	Get User’s Photos Count
