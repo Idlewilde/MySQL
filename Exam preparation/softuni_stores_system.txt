@@ -57,7 +57,7 @@ middle_name CHAR(1),
 last_name VARCHAR(20) NOT NULL,
 salary DECIMAL(19,2) NOT NULL DEFAULT 0,
 hire_date DATE NOT NULL,
-manager_id INT NOT NULL,
+manager_id INT,
 store_id INT NOT NULL,
 CONSTRAINT fk_man FOREIGN KEY(manager_id) REFERENCES employees(id),
 CONSTRAINT fk_strr FOREIGN KEY(store_id) REFERENCES stores(id));
