@@ -108,9 +108,13 @@ ORDER BY  likes_count DESC, comments_count DESC, ph.id;
 
 3.5.	The Photo on the Tenth Day of the Month
 
-
+SELECT CONCAT(LEFT(`description`,30),"..."), `date` FROM photos
+WHERE DAY(`date`)=10
+ORDER BY `date` DESC;
 
 4.	Section 4: Programmability
+
 4.1.	Get User’s Photos Count
+
 4.2.	Increase User Age
 
