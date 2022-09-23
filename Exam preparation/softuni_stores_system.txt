@@ -1,0 +1,23 @@
+0.	Section 0: Database Overview
+
+CREATE SCHEMA softuni_stores_system;
+USE softuni_stores_system;
+
+1.	Section 1: Data Definition Language (DDL)
+
+2.	Section 2: Data Manipulation Language (DML)
+2.1.	Insert
+2.2.	Update
+2.3.	Delete
+
+3.	Section 3: Querying
+3.1.	Employees
+3.2.	Products with old pictures
+3.3.	Counts of products in stores
+3.4.	Specific employee
+3.5.  Find all information of stores
+
+4.	Section 4: Programmability
+4.1.	Find name of top paid employee by store name
+4.2.	Update product price by address
+
