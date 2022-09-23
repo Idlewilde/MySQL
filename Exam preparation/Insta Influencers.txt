@@ -75,9 +75,30 @@ DELETE a FROM addresses AS a
 WHERE a.id % 3 = 0;
 
 3.	Section 3: Querying
+
 3.1.	Users
+
+SELECT username, gender, age FROM users
+ORDER BY age DESC, username;
+
 3.2.	Extract 5 Most Commented Photos
-3.3.	Count likes and comments
+
+SELECT ph.id, ph.`date` AS date_and_time, ph.`description`, COUNT(c.id) AS commentsCount
+FROM photos AS ph
+JOIN comments AS c ON ph.id=c.photo_id
+GROUP BY ph.id
+ORDER BY commentsCount DESC,ph.id
+LIMIT 5;
+
+3.3. Lucky users
+
+SELECT CONCAT(u.id," ",u.username), u.email FROM users AS u
+JOIN users_photos AS uph ON u.id=uph.user_id
+WHERE u.id=uph.photo_id
+ORDER BY u.id;
+
+3.4.	Count likes and comments
+
 3.5.	The Photo on the Tenth Day of the Month
 
 4.	Section 4: Programmability
