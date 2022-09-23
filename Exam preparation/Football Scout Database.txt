@@ -151,3 +151,15 @@ END
 
 4.2.	Find good playmaker by teams
 
+CREATE PROCEDURE udp_find_playmaker(min_dribble_points INT,team_name VARCHAR(45))
+BEGIN
+SELECT CONCAT(p.first_name," ",p.last_name) AS full_name, 
+p.age, p.salary, sk.dribbling, sk.speed, t.`name` FROM players as p
+JOIN skills_data AS sk ON p.skills_data_id=sk.id
+JOIN teams AS t ON p.team_id=t.id
+WHERE sk.speed>(SELECT AVG(sd.speed) from skills_data as sd) 
+AND sk.dribbling>min_dribble_points
+AND t.`name`=team_name
+ORDER BY sk.speed DESC LIMIT 1;
+END
+
