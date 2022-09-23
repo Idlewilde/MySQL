@@ -85,8 +85,20 @@ DELETE FROM employees
 WHERE salary>=6000 AND manager_id IS NOT NULL;
 
 3.	Section 3: Querying
+
 3.1.	Employees
+
+SELECT first_name,middle_name,last_name,salary,hire_date FROM employees
+ORDER BY hire_date DESC;
+
 3.2.	Products with old pictures
+
+SELECT p.`name`,p.price,p.best_before,CONCAT(LEFT(p.description,10),"..."),pc.url 
+FROM products AS p
+JOIN pictures AS pc ON p.picture_id=pc.id
+WHERE p.price>20 AND YEAR(pc.added_on)<2019 AND LENGTH(p.description)>100
+ORDER BY p.price DESC;
+
 3.3.	Counts of products in stores
 3.4.	Specific employee
 3.5.  Find all information of stores
