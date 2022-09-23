@@ -50,8 +50,16 @@ CREATE TABLE `addresses`(
 CONSTRAINT fk_user2_id FOREIGN KEY(user_id) REFERENCES users (id));
 
 2.	Section 2: Data Manipulation Language (DML)
+
 2.1.	Insert
+
+INSERT INTO addresses (address, town, country, user_id)
+SELECT u.username,u.`password`,u.ip, u.age
+FROM users as u
+WHERE u.gender='M';
+
 2.2.	Update
+
 2.3.	Delete
 
 3.	Section 3: Querying
