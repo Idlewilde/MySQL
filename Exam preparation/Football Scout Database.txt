@@ -137,7 +137,17 @@ ORDER BY total_count_of_players DESC, c.`name`;
 
 4.1.	Find all players that play on stadium
 
-
+CREATE FUNCTION udf_stadium_players_count (stadium_name VARCHAR(30))
+RETURNS INT 
+DETERMINISTIC
+BEGIN
+	DECLARE e_count INT;
+	SET e_count := (SELECT count(p.id) FROM players AS p
+	RIGHT JOIN teams AS t on p.team_id=t.id
+	RIGHT JOIN stadiums AS s ON t.stadium_id=s.id
+	WHERE s.`name`= stadium_name);
+    RETURN e_count;
+END 
 
 4.2.	Find good playmaker by teams
 
