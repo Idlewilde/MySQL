@@ -116,5 +116,30 @@ ORDER BY `date` DESC;
 
 4.1.	Get User’s Photos Count
 
+CREATE FUNCTION udf_users_photos_count(username VARCHAR(30)) 
+RETURNS INT 
+DETERMINISTIC
+BEGIN
+	DECLARE e_count INT;
+	SET e_count := (SELECT COUNT(up.photo_id) FROM users_photos AS up
+	 JOIN users AS u ON up.user_id = u.id
+	WHERE u.`username` = username);
+	RETURN e_count;
+END 
+
 4.2.	Increase User Age
+
+CREATE PROCEDURE udp_modify_user (address VARCHAR(30), town VARCHAR(30)) 
+BEGIN
+	START TRANSACTION;
+	IF((SELECT count(a.user_id) FROM addresses AS a 
+    WHERE a.town = town AND a.address=address)<1) THEN
+	ROLLBACK;
+	ELSE
+		UPDATE users AS u 
+        JOIN addresses AS a ON a.user_id=u.id
+        SET u.age = u.age + 10 
+		WHERE a.town=town AND a.address=address;
+	END IF; 
+END
 
