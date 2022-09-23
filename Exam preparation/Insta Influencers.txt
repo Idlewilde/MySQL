@@ -1,6 +1,53 @@
 0.	Section 0: Database Overview
 
+CREATE SCHEMA instd;
+USE instd;
+
 1.	Section 1: Data Definition Language (DDL)
+
+CREATE TABLE `photos`(
+`id` INT AUTO_INCREMENT PRIMARY KEY,
+`description` TEXT NOT NULL,
+`date` DATETIME NOT NULL,
+`views` INT NOT NULL DEFAULT 0);
+
+CREATE TABLE `comments`(
+`id` INT AUTO_INCREMENT PRIMARY KEY,
+`comment` VARCHAR(255) NOT NULL,
+`date` DATETIME NOT NULL,
+`photo_id` INT NOT NULL,
+CONSTRAINT fk_photo0_id FOREIGN KEY(photo_id) REFERENCES photos (id));
+
+CREATE TABLE `users`(
+`id` INT AUTO_INCREMENT PRIMARY KEY,
+`username` VARCHAR(30) NOT NULL UNIQUE,
+`password` VARCHAR(30) NOT NULL,
+`email` VARCHAR(50) NOT NULL,
+`gender` CHAR(1) NOT NULL,
+`age` INT NOT NULL,
+`job_title` VARCHAR(40) NOT NULL,
+`ip` VARCHAR(30) NOT NULL);
+
+CREATE TABLE `likes`(
+`id` INT AUTO_INCREMENT PRIMARY KEY,
+`photo_id` INT NOT NULL,
+`user_id` INT NOT NULL,
+CONSTRAINT fk_photo_id FOREIGN KEY(photo_id) REFERENCES photos (id),
+CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users (id));
+
+CREATE TABLE `users_photos`(
+`photo_id` INT NOT NULL,
+`user_id` INT NOT NULL,
+CONSTRAINT fk_photo1_id FOREIGN KEY(photo_id) REFERENCES photos (id),
+CONSTRAINT fk_user1_id FOREIGN KEY(user_id) REFERENCES users (id));
+
+CREATE TABLE `addresses`(
+`id` INT AUTO_INCREMENT PRIMARY KEY,
+`address` VARCHAR(30) NOT NULL,
+`town` VARCHAR(30) NOT NULL,
+`country` VARCHAR(30) NOT NULL,
+`user_id` INT NOT NULL,
+CONSTRAINT fk_user2_id FOREIGN KEY(user_id) REFERENCES users (id));
 
 2.	Section 2: Data Manipulation Language (DML)
 2.1.	Insert
