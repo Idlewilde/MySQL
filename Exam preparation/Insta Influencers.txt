@@ -1,0 +1,19 @@
+0.	Section 0: Database Overview
+
+1.	Section 1: Data Definition Language (DDL)
+
+2.	Section 2: Data Manipulation Language (DML)
+2.1.	Insert
+2.2.	Update
+2.3.	Delete
+
+3.	Section 3: Querying
+3.1.	Users
+3.2.	Extract 5 Most Commented Photos
+3.3.	Count likes and comments
+3.5.	The Photo on the Tenth Day of the Month
+
+4.	Section 4: Programmability
+4.1.	Get User’s Photos Count
+4.2.	Increase User Age
+
