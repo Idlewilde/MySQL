@@ -100,7 +100,27 @@ WHERE p.price>20 AND YEAR(pc.added_on)<2019 AND LENGTH(p.description)>100
 ORDER BY p.price DESC;
 
 3.3.	Counts of products in stores
+
+SELECT st.`name`,
+(SELECT COUNT(ps.product_id) FROM products_stores AS ps
+WHERE ps.store_id = st.id) AS product_count,
+(SELECT ROUND(AVG(p.price), 2) FROM products AS p
+JOIN products_stores AS prs ON p.id = prs.product_id
+JOIN stores AS str ON str.id = prs.store_id
+WHERE str.id = st.id) AS `avg` FROM stores AS st
+GROUP BY st.id
+ORDER BY product_count DESC , `avg` DESC , st.id;
+
 3.4.	Specific employee
+
+SELECT CONCAT(e.first_name," ", e.last_name) AS full_name,
+st.`name` AS store_name,
+ad.`name` AS address,
+e.salary AS salary FROM employees AS e
+JOIN stores AS st ON e.store_id=st.id
+JOIN addresses AS ad ON st.address_id=ad.id
+WHERE e.salary < 4000 AND LENGTH(ad.`name`)>8 AND ad.`name` LIKE '%5%' AND e.last_name LIKE '%n';
+
 3.5.  Find all information of stores
 
 4.	Section 4: Programmability
