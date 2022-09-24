@@ -109,7 +109,23 @@ ORDER BY c.full_name;
 
 3.5.	Full information of courses
 
+SELECT a.`name`,
+CASE
+    WHEN HOUR(co.`start`)>=6 AND HOUR(co.`start`)<=20 THEN 'Day'
+    ELSE 'Night'
+END AS day_time,
+co.bill,c.full_name,car.make,car.model,cat.`name` as category_name FROM courses AS co
+JOIN clients AS c ON co.client_id=c.id
+JOIN addresses AS a ON co.from_address_id=a.id
+JOIN cars AS car ON co.car_id=car.id
+JOIN categories AS cat ON car.category_id=cat.id
+ORDER BY co.id;
+
 4.	Section 4: Programmability
+
 4.1.  Find all courses by client’s phone number
+
+
+
 4.2.	Full info for address
 
