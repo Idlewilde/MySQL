@@ -1,7 +1,7 @@
 0.	Section 0: Database Overview
 
-CREATE SCHEMA softuni_stores_system;
-USE softuni_stores_system;
+CREATE SCHEMA stc;
+USE stc;
 
 1.	Section 1: Data Definition Language (DDL)
 
