@@ -71,8 +71,14 @@ AND c.`year`<=2010 AND c.make NOT LIKE '%Mercedes-Benz%';
 
 2.3.	Delete
 
+DELETE c FROM clients AS c
+LEFT JOIN courses AS co ON co.client_id=c.id
+WHERE co.id IS NULL AND LENGTH(c.full_name)>3;
+
 3.	Section 3: Querying
+
 3.1.	Cars
+
 3.2.	Drivers and Cars
 3.3.	Number of courses for each car
 3.4. 	Regular clients
