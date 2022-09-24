@@ -123,7 +123,30 @@ WHERE e.salary < 4000 AND LENGTH(ad.`name`)>8 AND ad.`name` LIKE '%5%' AND e.las
 
 3.5.  Find all information of stores
 
+SELECT REVERSE(st.`name`), CONCAT(UPPER(t.`name`),"-",ad.`name`) AS full_address,
+COUNT(e.id) AS employees_count FROM stores as st
+JOIN addresses AS ad ON st.address_id=ad.id
+JOIN towns AS t ON ad.town_id=t.id
+JOIN employees AS e ON st.id=e.store_id
+GROUP by st.id ORDER BY full_address;
+
 4.	Section 4: Programmability
+
 4.1.	Find name of top paid employee by store name
+
+CREATE FUNCTION udf_top_paid_employee_by_store(store_name VARCHAR(50)) 
+RETURNS VARCHAR(200) 
+DETERMINISTIC
+BEGIN
+	DECLARE information VARCHAR(200);
+	SET information := 
+    (SELECT CONCAT(e.first_name, " ", e.middle_name,". ", e.last_name, " works in store for ", 2020-YEAR(e.hire_date), " years")
+    FROM employees AS e
+	JOIN stores AS st ON e.store_id = st.id
+	WHERE st.`name` = store_name
+    ORDER BY e.salary DESC LIMIT 1);
+	RETURN information;
+END
+
 4.2.	Update product price by address
 
