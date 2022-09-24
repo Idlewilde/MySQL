@@ -79,8 +79,20 @@ WHERE co.id IS NULL AND LENGTH(c.full_name)>3;
 
 3.1.	Cars
 
+SELECT make,model,`condition` FROM cars ORDER BY id;
+
 3.2.	Drivers and Cars
+
+SELECT d.first_name,d.last_name,c.make,c.model,c.mileage FROM drivers AS d
+JOIN cars_drivers AS cd ON d.id=cd.driver_id
+JOIN cars AS c ON c.id=cd.car_id
+WHERE c.mileage>0
+ORDER BY c.mileage DESC,d.first_name;
+
 3.3.	Number of courses for each car
+
+
+
 3.4. 	Regular clients
 3.5.	Full information of courses
 
