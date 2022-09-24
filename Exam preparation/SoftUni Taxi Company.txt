@@ -54,8 +54,21 @@ CONSTRAINT fk_car1_id FOREIGN KEY (car_id) REFERENCES cars(id),
 CONSTRAINT fk_dr_id FOREIGN KEY (driver_id) REFERENCES drivers(id));
 
 2.	Section 2: Data Manipulation Language (DML)
+
 2.1.	Insert
+
+INSERT INTO clients (full_name, phone_number)
+SELECT CONCAT(d.first_name," ",d.last_name),CONCAT("(088) 9999",d.id*2)
+FROM drivers as d
+WHERE d.id BETWEEN 10 AND 20;
+
 2.2.	Update
+
+UPDATE cars AS c 
+SET c.`condition` = 'C'
+WHERE (c.mileage>=800000 OR c.mileage IS NULL) 
+AND c.`year`<=2010 AND c.make NOT LIKE '%Mercedes-Benz%';
+
 2.3.	Delete
 
 3.	Section 3: Querying
