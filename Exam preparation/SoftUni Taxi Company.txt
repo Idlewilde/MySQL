@@ -91,7 +91,12 @@ ORDER BY c.mileage DESC,d.first_name;
 
 3.3.	Number of courses for each car
 
-
+SELECT c.id AS car_id,c.make,c.mileage,
+(SELECT COUNT(co.id) FROM courses AS co WHERE c.id=co.car_id) AS count_of_courses,
+(SELECT ROUND(AVG(cou.bill),2) FROM courses AS cou WHERE c.id=cou.car_id) AS avg_bill
+FROM cars AS c
+HAVING count_of_courses NOT IN (2)
+ORDER BY count_of_courses DESC,c.id;
 
 3.4. 	Regular clients
 3.5.	Full information of courses
