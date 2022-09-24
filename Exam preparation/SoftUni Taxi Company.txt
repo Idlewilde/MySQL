@@ -99,6 +99,14 @@ HAVING count_of_courses NOT IN (2)
 ORDER BY count_of_courses DESC,c.id;
 
 3.4. 	Regular clients
+
+SELECT c.full_name,COUNT(co.car_id) AS count_of_cars,SUM(co.bill) AS total_sum
+FROM clients AS c
+JOIN courses AS co ON c.id=co.client_id
+GROUP BY c.id
+HAVING count_of_cars>1 AND SUBSTRING(c.full_name,2,1)='a'
+ORDER BY c.full_name;
+
 3.5.	Full information of courses
 
 4.	Section 4: Programmability
