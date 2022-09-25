@@ -55,9 +55,26 @@ CONSTRAINT fk_game_id FOREIGN KEY (game_id) REFERENCES games(id),
 CONSTRAINT fk_cat_id FOREIGN KEY (category_id) REFERENCES categories(id));
 
 2.	Section 2: Data Manipulation Language (DML)
+
 2.1.	Insert
+
+INSERT INTO games (`name`, rating, budget, team_id)
+SELECT LOWER(REVERSE(SUBSTRING(t.`name`,2))),t.id,t.leader_id*1000,t.id
+FROM teams as t
+WHERE t.id BETWEEN 1 AND 9;
+
 2.2.	Update
+
+UPDATE employees AS e 
+JOIN teams AS t ON e.id=t.leader_id
+SET e.salary = e.salary+1000
+WHERE e.salary<5000 AND e.age<40;
+
 2.3.	Delete
+
+DELETE g FROM games AS g
+LEFT JOIN games_categories AS gc ON g.id=gc.game_id
+WHERE g.release_date IS NULL AND gc.category_id IS NULL;
 
 3.	Section 3: Querying
 3.1.	Employees
