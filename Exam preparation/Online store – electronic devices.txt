@@ -70,6 +70,10 @@ WHERE p.quantity_in_stock>=60 AND p.quantity_in_stock<=70;
 
 2.3.	Delete
 
+DELETE c FROM customers AS c
+LEFT JOIN orders AS o ON o.customer_id=c.id
+WHERE o.id IS NULL;
+
 3.	Section 3: Querying
 3.1.	Categories
 3.2.	Quantity
