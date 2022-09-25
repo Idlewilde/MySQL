@@ -1,0 +1,23 @@
+0.	Section 0: Database Overview
+
+CREATE SCHEMA softuni_stores_system;
+USE softuni_stores_system;
+
+1.	Section 1: Data Definition Language (DDL)
+
+2.	Section 2: Data Manipulation Language (DML)
+2.1.	Insert
+2.2.	Update
+2.3.	Delete
+
+3.	Section 3: Querying
+3.1.	Employees
+3.2.	Addresses of the teams
+3.3.	Categories info
+3.4. 	Games of 2022
+3.5.	Full info for games
+
+4.	Section 4: Programmability
+4.1.  Find all basic information for a game
+4.2.	Update Budget of the Games
+
