@@ -75,10 +75,32 @@ LEFT JOIN orders AS o ON o.customer_id=c.id
 WHERE o.id IS NULL;
 
 3.	Section 3: Querying
+
 3.1.	Categories
+
+SELECT id, `name` FROM categories
+ORDER BY `name` DESC;
+
 3.2.	Quantity
+
+SELECT id, brand_id, `name`, quantity_in_stock FROM products
+WHERE price>1000 AND quantity_in_stock<30
+ORDER BY quantity_in_stock,id;
+
 3.3.	Review
+
+SELECT id, content, rating, picture_url,published_at FROM reviews
+WHERE SUBSTRING(content,1,2)='My' AND LENGTH(content)>61
+ORDER BY rating DESC;
+
 3.4. 	First customers
+
+SELECT CONCAT(c.first_name, " ", c.last_name) AS full_name, c.address, o.order_datetime
+FROM customers AS c
+JOIN orders AS o ON c.id=o.customer_id
+WHERE YEAR(o.order_datetime)<=2018
+ORDER BY full_name DESC;
+
 3.5.	Best categories
 
 4.	Section 4: Programmability
