@@ -1,9 +1,11 @@
 0.	Section 0: Database Overview
 
-CREATE SCHEMA softuni_stores_system;
-USE softuni_stores_system;
+CREATE SCHEMA sgd;
+USE sgd;
 
 1.	Section 1: Data Definition Language (DDL)
+
+
 
 2.	Section 2: Data Manipulation Language (DML)
 2.1.	Insert
