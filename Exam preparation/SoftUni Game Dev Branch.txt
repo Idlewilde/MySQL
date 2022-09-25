@@ -77,8 +77,19 @@ LEFT JOIN games_categories AS gc ON g.id=gc.game_id
 WHERE g.release_date IS NULL AND gc.category_id IS NULL;
 
 3.	Section 3: Querying
+
 3.1.	Employees
+
+SELECT first_name, last_name, age, salary, happiness_level FROM employees ORDER BY salary,id;
+
 3.2.	Addresses of the teams
+
+SELECT t.`name`, a.`name`, LENGTH(a.`name`) AS count_of_characters FROM teams AS t
+JOIN offices AS o ON o.id = t.office_id
+JOIN addresses AS a ON a.id = o.address_id
+WHERE o.website IS NOT NULL
+ORDER BY t.`name`, a.`name`;
+
 3.3.	Categories info
 3.4. 	Games of 2022
 3.5.	Full info for games
