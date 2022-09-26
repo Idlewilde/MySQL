@@ -56,8 +56,20 @@ CONSTRAINT fk_genre_id FOREIGN KEY (genre_id) REFERENCES genres(id),
 CONSTRAINT fk_mov_id FOREIGN KEY (movie_id) REFERENCES movies(id));
 
 2.	Section 2: Data Manipulation Language (DML)
+
 2.1.	Insert
+
+INSERT INTO actors (first_name,last_name,birthdate,height,awards,country_id)
+SELECT REVERSE(a.first_name),REVERSE(a.last_name),ADDDATE(a.birthdate,INTERVAL -2 DAY),a.height+10,country_id,3
+FROM actors AS a
+WHERE a.id<=10;
+
 2.2.	Update
+
+UPDATE movies_additional_info AS m
+SET m.runtime=m.runtime-10
+WHERE m.id>=15 AND m.id<=25;
+
 2.3.	Delete
 
 3.	Section 3: Querying
