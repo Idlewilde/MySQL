@@ -101,6 +101,13 @@ WHERE am.movie_id IS NULL
 ORDER BY height;
 
 3.4. 	International festival
+
+SELECT c.`name`, COUNT(m.id) AS movies_count FROM countries AS c
+JOIN movies AS m ON c.id=m.country_id
+GROUP BY c.id
+HAVING movies_count>=7
+ORDER by c.`name` DESC;
+
 3.5.	Rating system
 
 4.	Section 4: Programmability
