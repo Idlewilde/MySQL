@@ -72,8 +72,16 @@ WHERE m.id>=15 AND m.id<=25;
 
 2.3.	Delete
 
+DELETE c FROM countries AS c
+LEFT JOIN movies  AS m on c.id = m.country_id
+WHERE m.id IS NULL;
+
 3.	Section 3: Querying
+
 3.1.	Countries
+
+
+
 3.2.	Old movies
 3.3.	Movie casting
 3.4. 	International festival
