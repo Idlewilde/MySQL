@@ -110,7 +110,25 @@ ORDER by c.`name` DESC;
 
 3.5.	Rating system
 
+SELECT m.title,
+CASE
+    WHEN ma.rating<=4 THEN "poor"
+    WHEN ma.rating>7 THEN "excellent"
+    ELSE "good"
+END AS rating,
+ CASE
+    WHEN ma.has_subtitles = FALSE THEN "-"
+    ELSE "english"
+END AS subtitles,
+ma.budget FROM movies AS m
+JOIN movies_additional_info AS ma ON m.movie_info_id=ma.id
+ORDER BY ma.budget DESC;
+
 4.	Section 4: Programmability
+
 4.1.  History movies
+
+
+
 4.2.	Movie awards
 
