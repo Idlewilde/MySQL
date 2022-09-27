@@ -128,7 +128,20 @@ ORDER BY ma.budget DESC;
 
 4.1.  History movies
 
-
+CREATE FUNCTION udf_actor_history_movies_count(full_name VARCHAR(50)) 
+RETURNS INT 
+DETERMINISTIC
+BEGIN
+	DECLARE e_count INT;
+	SET e_count := (SELECT COUNT(m.id) FROM movies AS m
+	 JOIN movies_actors AS ma ON m.id=ma.movie_id
+     JOIN actors AS a ON ma.actor_id=a.id
+     JOIN genres_movies AS gm ON m.id=gm.movie_id
+     JOIN genres AS g ON gm.genre_id=g.id
+	WHERE CONCAT(a.first_name," ",a.last_name) LIKE full_name AND g.`name`="history"
+    GROUP BY a.id);
+	RETURN e_count;
+END 
 
 4.2.	Movie awards
 
